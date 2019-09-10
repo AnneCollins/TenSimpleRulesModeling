@@ -22,10 +22,10 @@ AZbrick = [74, 48, 39]/256;
 T   = 1000;         % number of trials
 mu  = [0.2 0.8];    % mean reward of bandits
 
-
+rng(2);
 
 % Model 3: Rescorla Wagner
-for count = 1:100
+for count = 1:1000
     alpha = rand;
     beta = exprnd(10);
     [a, r] = simulate_M3RescorlaWagner_v1(T, mu, alpha, beta);
@@ -54,6 +54,15 @@ for i= 1:size(Xsim,1)
     
 end
 
+% find 'bad' alpha values
+thresh = 0.25;
+ind = abs(Xsim(1,:) - Xfit(1,:)) > thresh;
+
+for i = 1:2
+    axes(ax(i));
+plot(Xsim(i,ind), Xfit(i,ind), 'o', 'color', AZblue, 'markersize', 8, 'linewidth', 1, ...
+    'markerfacecolor', [1 1 1]*0.5)
+end
 
 set(ax(1,2),'xscale', 'log', 'yscale' ,'log')
 
@@ -75,3 +84,18 @@ for i= 1:size(Xsim,1)
     plot(xl, xl, 'k--')
 end
 saveFigurePdf(gcf, '~/Desktop/Figure4')
+saveFigurePng(gcf, '~/Desktop/Figure4')
+
+% 
+% %% error in alpha vs error in beta
+% % err = (Xsim - Xfit);
+% figure(1); clf; hold on;
+% plot( (Xfit(2,:)./Xsim(2,:)), abs (  Xfit(1,:)-Xsim(1,:)), 'o', 'color', AZred, 'markersize', 8, 'linewidth', 1)
+% % plot([0.1 1000], [0 0],'k--', 'linewidth', 1)
+% % plot([1 1], [0 1], 'k--', 'linewidth', 1)
+% % lsline
+% set(gca, 'xscale', 'log')
+% % xlim([0.5 5])
+% % ylim([-0.25 0.25])
+
+

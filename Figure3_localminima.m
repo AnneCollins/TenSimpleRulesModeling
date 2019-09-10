@@ -128,7 +128,7 @@ plot(realalpha,realrho,'xr')
 xlabel('alpha')
 ylabel('rho')
     set(gca,'fontsize',16)
-saveFigurePdf(gcf, '~/Figures/Figure3a')
+saveFigurePdf(gcf, '~/Desktop/Figure3a')
 
 %% plot 1d versions of the likelihood
 ps{1}=alphas;na{1}='alpha';
@@ -151,4 +151,4 @@ for i=1%:4
 end
 
 %% save resulting figure
-saveFigurePdf(gcf, '~/Figures/Figure3b')
+saveFigurePdf(gcf, '~/Desktop/Figure3b')
