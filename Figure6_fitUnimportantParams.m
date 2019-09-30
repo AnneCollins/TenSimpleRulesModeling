@@ -100,7 +100,7 @@ for s=1:10
     end
     %corA=1+(rand>.5);
     % initialize Q-values
-    %Q=[.5 .5];
+    Q=[.5 .5];
     % run 50 trials
     for t=1:50
         k=k+1;
