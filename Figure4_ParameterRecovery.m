@@ -36,8 +36,6 @@ for count = 1:1000
     Xfit(1,count) = Xf(1);
     Xfit(2,count)  = Xf(2);
     
-    
-    
 end
 
 %% basic parameter recovery plots
@@ -86,16 +84,10 @@ end
 saveFigurePdf(gcf, '~/Desktop/Figure4')
 saveFigurePng(gcf, '~/Desktop/Figure4')
 
-% 
-% %% error in alpha vs error in beta
-% % err = (Xsim - Xfit);
-% figure(1); clf; hold on;
-% plot( (Xfit(2,:)./Xsim(2,:)), abs (  Xfit(1,:)-Xsim(1,:)), 'o', 'color', AZred, 'markersize', 8, 'linewidth', 1)
-% % plot([0.1 1000], [0 0],'k--', 'linewidth', 1)
-% % plot([1 1], [0 1], 'k--', 'linewidth', 1)
-% % lsline
-% set(gca, 'xscale', 'log')
-% % xlim([0.5 5])
-% % ylim([-0.25 0.25])
 
 
+%%
+figure(1); clf; hold on;
+% plot(Xsim(1,:), Xsim(2,:),'.')
+plot(Xfit(2,:), Xfit(1,:),'.')
+set(gca, 'xscale', 'log')
