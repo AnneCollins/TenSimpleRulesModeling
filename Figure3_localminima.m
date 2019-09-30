@@ -14,6 +14,11 @@ rhos=[0:.05:1];
 % define a range of capacities to test
 Ks=2:6;
 
+% for a finer grid:
+% alphas = [.06:.01:.5];%[0.05:.05:1];
+% betas = [1 4:2:20];%[1 5:5:50];
+% rhos=[.5:.01:.98];%[0:.05:1];
+
 
 % define simulation parameters
 realalpha=.1;
