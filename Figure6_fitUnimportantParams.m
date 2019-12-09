@@ -90,8 +90,9 @@ end
 function D=simulate(alpha,beta,bias)
 % simulate RL
 k=0;
-Q=[.5 .5];
-for s=1:10
+
+for s=1:20 
+    Q=[.5 .5];
     % define the correct action for this block
     if mod(s,2) == 1
         corA = 1;
@@ -100,7 +101,7 @@ for s=1:10
     end
     %corA=1+(rand>.5);
     % initialize Q-values
-    Q=[.5 .5];
+    %Q=[.5 .5]; %BOB EDIT
     % run 50 trials
     for t=1:50
         k=k+1;
@@ -154,7 +155,7 @@ alpha = p(1);
 beta=10*p(2);
 bias=0;
 k=0;
-for s=1:10
+for s=1:20
     Q=[.5 .5];
     llh=0;
     for t=1:50
