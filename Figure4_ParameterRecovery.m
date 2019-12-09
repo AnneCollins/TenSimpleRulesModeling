@@ -84,6 +84,7 @@ for i= 1:size(Xsim,1)
     plot(xl, xl, 'k--')
 end
 saveFigurePdf(gcf, '~/Desktop/Figure4')
+saveFigureEps(gcf, '~/Desktop/Figure4')
 saveFigurePng(gcf, '~/Desktop/Figure4')
 
 % 

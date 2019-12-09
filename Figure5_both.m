@@ -30,17 +30,25 @@ CM2 = [    0.9700    0.0300         0         0         0
     0.0300         0    0.1000    0.1500    0.7200];
 
 
+%% inverse confusion matrices
+for i = 1:size(CM1,2)
+    iCM1(:,i) = CM1(:,i) / sum(CM1(:,i));
+    iCM2(:,i) = CM2(:,i) / sum(CM2(:,i));
+end
+
+
+
 %%
 
 figure(1); clf;
-set(gcf, 'Position', [400   405   900   400]);
-ax = easy_gridOfEqualFigures([0.05 0.22], [0.1 0.14 0.03]);
+set(gcf, 'Position', [400   405   900   800]);
+ax = easy_gridOfEqualFigures([0.02 0.23 0.17], [0.1 0.14 0.03]);
 axes(ax(1)); 
 t = imageTextMatrix(CM1);
 set(t(CM1'<0.3), 'color', 'w')
 hold on;
 [l1, l2] = addFacetLines(CM1);
-set(t, 'fontsize', 22)
+set(t, 'fontsize', 18)
 xlabel('fit model')
 ylabel('simulated model')
 
@@ -49,12 +57,41 @@ t = imageTextMatrix(CM2);
 set(t(CM2'<0.3), 'color', 'w')
 hold on;
 [l1, l2] = addFacetLines(CM2);
-set(t, 'fontsize', 22)
+set(t, 'fontsize', 18)
 xlabel('fit model')
 ylabel('simulated model')
 
-set(ax, 'xtick', [1:5], 'ytick', [1:5], 'fontsize', 28, ...
-    'xaxislocation', 'top', 'tickdir', 'out')
-addABCs(ax, [-0.05 0.18], 50)
+a = annotation('textbox', [0 0.94 1 0.06]);
+set(a, 'string', 'confusion matrix: p(fit model | simulated model)', 'fontsize', 38, ...
+    'horizontalalignment', 'center', ...
+    'linestyle', 'none', 'fontweight', 'normal')
 
-saveFigurePdf(gcf, './Figures/Figure5')
+axes(ax(3)); 
+t = imageTextMatrix(round(100*iCM1)/100);
+set(t(iCM1'<0.3), 'color', 'w')
+hold on;
+[l1, l2] = addFacetLines(CM1);
+set(t, 'fontsize', 18)
+xlabel('fit model')
+ylabel('simulated model')
+
+axes(ax(4)); 
+t = imageTextMatrix(round(100*iCM2)/100);
+set(t(iCM2'<0.3), 'color', 'w')
+hold on;
+[l1, l2] = addFacetLines(iCM2);
+set(t, 'fontsize', 18)
+xlabel('fit model')
+ylabel('simulated model')
+
+a = annotation('textbox', [0 0.94-0.52 1 0.06]);
+set(a, 'string', 'inversion matrix: p(simulated model | fit model)', 'fontsize', 38, ...
+    'horizontalalignment', 'center',...
+    'linestyle', 'none', 'fontweight', 'normal')
+
+
+set(ax, 'xtick', [1:5], 'ytick', [1:5], 'fontsize', 24, ...
+    'xaxislocation', 'top', 'tickdir', 'out')
+addABCs(ax, [-0.05 0.08], 40)
+saveFigurePdf(gcf, '~/Desktop/Figure5')
+% saveFigurePdf(gcf, './Figures/Figure5')
